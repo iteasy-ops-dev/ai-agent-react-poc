@@ -120,4 +120,4 @@ echo -e "${YELLOW}앱을 중지하려면 Ctrl+C를 눌러주세요${NC}"
 echo
 
 # Streamlit 실행
-streamlit run streamlit_app_v2.py --server.port $PORT --server.address 0.0.0.0
+streamlit run streamlit_app_v2.py 

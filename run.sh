@@ -50,4 +50,4 @@ echo -e "${GREEN}브라우저에서 http://localhost:$PORT 을 열어주세요${
 echo -e "${YELLOW}앱을 중지하려면 Ctrl+C를 눌러주세요${NC}"
 echo
 
-streamlit run streamlit_app_v2.py --server.port $PORT --server.address 0.0.0.0
+streamlit run streamlit_app_v2.py
