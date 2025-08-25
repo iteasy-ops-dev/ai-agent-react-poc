@@ -13,6 +13,7 @@ load_dotenv()
 MODEL_LIBRARY_MAPPINGS = {
     # OpenAI 라이브러리 사용 모델들
     "gpt-4": "openai",           # 실제 OpenAI API
+    "gpt-4": "openai",           # 실제 OpenAI API
     "gpt-3": "openai",           # 실제 OpenAI API  
     "gpt-oss": "openai",         # Ollama의 OpenAI 호환 API
     "llama": "openai",           # Ollama의 OpenAI 호환 API
@@ -332,6 +333,11 @@ class LLMClient:
     
     def _openai_chat_completion(self, messages, tools, stream, temperature, max_tokens, **kwargs):
         """OpenAI 방식의 채팅 완료"""
+
+        # TODO: model에 따라 적절한 파라미터 조정 필요 (예: gpt-4o, gpt-3.5-turbo 등)
+        # gpt-5 시리즈의 추론 모델일 경우, temperature는 반드시 1로 고정
+        if "gpt-5" in self.model.lower():
+            temperature = 1.0
         # 요청 파라미터 구성
         request_params = {
             "model": self.model,

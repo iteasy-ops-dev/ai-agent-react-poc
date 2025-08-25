@@ -197,8 +197,11 @@ def main():
         model = st.selectbox(
             "모델명",
             options=[
+                "gpt-5-mini",
+                "gpt-5-nano",
                 "gpt-3.5-turbo",
-                "gpt-4o",
+                "gpt-4o",    
+                "gpt-4.1",    
                 "gpt-oss:20b",
                 "iteasy-gpt",
             ],
