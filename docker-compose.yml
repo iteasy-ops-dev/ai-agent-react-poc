@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: function-calling-react
+    ports:
+      - "8501:8501"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # 추가 환경 변수가 필요한 경우 여기에 추가
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # 개발 중 코드 변경 사항을 실시간으로 반영하려면 주석 해제
+      # - ./core:/app/core
+      # - ./streamlit_app_v2.py:/app/streamlit_app_v2.py
+      # 로컬 .env 파일 마운트 (선택사항)
+      - ./.env:/app/.env:ro
+    networks:
+      - app-network
+    restart: unless-stopped
+    # 리소스 제한 (선택사항)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+networks:
+  app-network:
+    driver: bridge
